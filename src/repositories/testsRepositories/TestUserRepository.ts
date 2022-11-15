@@ -1,4 +1,4 @@
-import { ICreateUserRequest, UsersRepository, IUser } from '../UsersRepository'
+import { ICreateUserRequest, UsersRepository, IUser } from '@/repositories/UsersRepository'
 import { randomUUID } from 'node:crypto'
 import { Account, Prisma } from '@prisma/client'
 

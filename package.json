@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register src/server.ts",
+    "dev": "ts-node-dev --exit-child -r tsconfig-paths/register src/server.ts",
     "lint": "eslint --ext .ts src/",
     "test": "vitest",
     "coverage": "vitest run --coverage"
