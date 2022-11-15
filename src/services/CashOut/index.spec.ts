@@ -1,10 +1,11 @@
-import { TestAccountsRepository } from '@/repositories/testsRepositories/TestAccountsRepository'
-import { TestUsersRepository } from '@/repositories/testsRepositories/TestUserRepository'
 import { Prisma } from '@prisma/client'
 import { describe, expect, it } from 'vitest'
+
+import { TestAccountsRepository } from '@/repositories/testsRepositories/TestAccountsRepository'
+import { TestUsersRepository } from '@/repositories/testsRepositories/TestUserRepository'
 import { CashOutService } from '.'
-import { GetBalanceService } from '../Balance/GetBalanceService'
-import { CreateUserService } from '../User/CreateUserService'
+import { GetBalanceService } from '@/services/Balance/GetBalanceService'
+import { CreateUserService } from '@/services/User/CreateUserService'
 
 describe('CashOut Service', async () => {
   const userRepository = new TestUsersRepository()

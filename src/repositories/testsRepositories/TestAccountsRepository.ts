@@ -1,16 +1,9 @@
-import { Account, Prisma } from '@prisma/client'
+import { Account } from '@prisma/client'
 
 import { AccountsRepository, IAccount, ICashOutRequest } from '@/repositories/AccountsRepository'
 import { TestUsersRepository } from '@/repositories/testsRepositories/TestUserRepository'
 import { randomUUID } from 'crypto'
-
-interface ITransaction {
-  id: string
-  debitedAccount: string
-  creditedAccount: string
-  value: Prisma.Decimal
-  createdAt: Date
-}
+import { ITransaction } from '@/repositories/TransactionsRepository'
 
 export class TestAccountsRepository implements AccountsRepository {
   constructor (private readonly usersRepository: TestUsersRepository) {}
@@ -52,8 +45,8 @@ export class TestAccountsRepository implements AccountsRepository {
 
     const transaction = {
       id: randomUUID(),
-      debitedAccount: sender,
-      creditedAccount: receiver,
+      debitedAccountId: sender,
+      creditedAccountId: receiver,
       value: amount,
       createdAt: new Date()
     }
