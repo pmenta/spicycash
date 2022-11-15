@@ -11,5 +11,5 @@ export interface ICreateUserRequest {
 
 export interface UsersRepository {
   create: (data: ICreateUserRequest) => Promise<IUser>
-  getByUsername: (username: string) => Promise<IUser | null>
+  getByUsername: (username: string) => Promise<IUser & { password: string } | null>
 }

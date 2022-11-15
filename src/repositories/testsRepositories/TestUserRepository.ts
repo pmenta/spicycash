@@ -10,7 +10,8 @@ export class TestUsersRepository implements UsersRepository {
     const user = {
       id: randomUUID(),
       username: data.username,
-      accountId: randomUUID()
+      accountId: randomUUID(),
+      password: data.password
     }
 
     this.users.push(user)
@@ -25,8 +26,8 @@ export class TestUsersRepository implements UsersRepository {
     return userWithoutPassword
   }
 
-  async getByUsername (username: string): Promise<IUser | null> {
-    const user = this.users.find(user => user.username === username)
+  async getByUsername (username: string): Promise<IUser & { password: string } | null> {
+    const user = this.users.find(user => user.username === username) as IUser & { password: string }
 
     return user ?? null
   }
