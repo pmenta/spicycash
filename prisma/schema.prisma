@@ -36,8 +36,8 @@ model Transaction {
   id    String  @id @default(cuid())
   value Decimal
 
-  debitedAccountId  String @unique
-  creditedAccountId String @unique
+  debitedAccountId  String
+  creditedAccountId String
 
   debitedAccount  Account? @relation(name: "DebitedTransactions", fields: [debitedAccountId], references: [id])
   creditedAccount Account? @relation(name: "CreditedTransactions", fields: [creditedAccountId], references: [id])

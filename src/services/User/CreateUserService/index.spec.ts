@@ -49,7 +49,6 @@ describe('Create user service', () => {
     })
 
     expect(user.isRight()).toBe(true)
-
     if (user.isRight()) {
       expect(testUserRepository.accounts.find(account => account.id === user.value.accountId)).toHaveProperty('balance', new Prisma.Decimal(100))
     }

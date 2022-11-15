@@ -1,6 +1,5 @@
 import { TestAccountsRepository } from '@/repositories/testsRepositories/TestAccountsRepository'
 import { TestUsersRepository } from '@/repositories/testsRepositories/TestUserRepository'
-import { AuthenticationService } from '@/services/Authentication'
 import { CreateUserService } from '@/services/User/CreateUserService'
 import { Prisma } from '@prisma/client'
 import { describe, expect, it } from 'vitest'
@@ -11,16 +10,16 @@ describe('Get balance service', () => {
   const accountsRepository = new TestAccountsRepository(userRepository)
 
   const createUserService = new CreateUserService(userRepository)
-  const authenticationService = new AuthenticationService(userRepository)
   const getBalanceService = new GetBalanceService(accountsRepository)
 
   it('should be able to get balance', async () => {
-    await createUserService.execute({ username: 'John Doe', password: 'Senha123' })
-    const user = await authenticationService.execute({ username: 'John Doe', password: 'Senha123' })
+    const user = await createUserService.execute({ username: 'John Doe', password: 'Senha123' })
 
+    expect(user.isRight()).toBeTruthy()
     if (user.isRight()) {
-      const balance = await getBalanceService.execute(user.value.token)
+      const balance = await getBalanceService.execute(user.value.id)
 
+      expect(balance.isRight()).toBeTruthy()
       if (balance.isRight()) {
         expect(balance.value).toHaveProperty('balance')
         expect(balance.value.balance).toEqual(new Prisma.Decimal(100))
