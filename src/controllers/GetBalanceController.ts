@@ -4,10 +4,10 @@ import { Request, Response } from 'express'
 
 export class GetBalanceController {
   async handle (request: Request, response: Response): Promise<Response> {
-    const token = request.headers.authorization as string
+    const userId = request.userId
     const getBalanceService = new GetBalanceService(new PrismaAccountsRepository())
 
-    const account = await getBalanceService.execute(token.substring(7))
+    const account = await getBalanceService.execute(userId)
 
     if (account.isLeft()) {
       return response.status(account.value._statusCode).json({ error: account.value._message })
