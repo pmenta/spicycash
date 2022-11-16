@@ -9,5 +9,5 @@ export interface ITransaction {
 }
 
 export interface TransactionsRepository {
-  get: (id: string) => Promise<ITransaction[]>
+  get: (id: string, order?: Prisma.SortOrder, only?: 'debited' | 'credited') => Promise<ITransaction[]>
 }

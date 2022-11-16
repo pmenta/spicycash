@@ -5,7 +5,7 @@ export class PrismaAccountsRepository implements AccountsRepository {
   async getByUserId (id: string): Promise<IAccount | null> {
     const account = await prismaClient.account.findFirst({
       where: {
-        User: {
+        user: {
           id
         }
       }
@@ -17,7 +17,7 @@ export class PrismaAccountsRepository implements AccountsRepository {
   async getByUsername (username: string): Promise<IAccount | null> {
     const account = await prismaClient.account.findFirst({
       where: {
-        User: {
+        user: {
           username
         }
       }

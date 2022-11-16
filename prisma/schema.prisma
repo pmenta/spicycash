@@ -14,9 +14,9 @@ datasource db {
 model Account {
   id                   String        @id @default(cuid())
   balance              Decimal       @default(100)
-  User                 User?
-  DebitedTransactions  Transaction[] @relation(name: "DebitedTransactions")
-  CreditedTransactions Transaction[] @relation(name: "CreditedTransactions")
+  user                 User?
+  debitedTransactions  Transaction[] @relation(name: "DebitedTransactions")
+  creditedTransactions Transaction[] @relation(name: "CreditedTransactions")
 
   @@map("accounts")
 }
